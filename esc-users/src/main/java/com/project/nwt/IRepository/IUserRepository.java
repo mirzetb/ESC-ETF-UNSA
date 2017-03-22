@@ -7,9 +7,9 @@ import com.project.nwt.model.User;
 
 public interface IUserRepository extends CrudRepository<User, Long> {
 	
-	User findOne(int id);
-	List<User> findAll();
-	@SuppressWarnings("unchecked")
-	User save(User newUser);
-	String delete(int id);
+	//User findOne(int id);
+	//List<User> findAll();
+	//@SuppressWarnings("unchecked")
+	//User save(User newUser);
+	//String delete(int id);
 }

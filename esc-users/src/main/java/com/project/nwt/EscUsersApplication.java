@@ -20,9 +20,6 @@ import com.project.nwt.model.Role;
 import com.project.nwt.model.User;
 
 
-//spring.datasource.url=jdbc:mysql://localhost:3360/users_module
-//spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-
 @SpringBootApplication
 @EnableAutoConfiguration
 public class EscUsersApplication {
@@ -37,8 +34,8 @@ public class EscUsersApplication {
 	public CommandLineRunner demo(IUserRepository repository) {
 		return (args) -> {
 			// testing method save()
-			repository.save(new User("Neko", "Nekic",new Department("1", "AiE"), "sifra", "nnekic",
-		    		"nnekic@etf.unsa.ba", new Date(), "123456",new Role("1", "Administrator")));
+			//repository.save(new User("Neko", "Nekic2",1, "sifra", "nnekic","ddgrgdrg",//new Department("1", "AiE")
+		    //		"nnekic@etf.unsa.ba", new Date(), "123456", "fhhdfh",1));//new Role("1", "Administrator")
 
 			// testing method findAll()
 			log.info("Svi korisnici:");

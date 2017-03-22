@@ -15,13 +15,10 @@ import java.util.Date;
 public class User {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int id;
+    private Long id;
 	private String firstName;
     private String lastName;
-    
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private Department department;
+    private int departmentID;
     private String escID;
     private String password;
     private String username;
@@ -30,23 +27,23 @@ public class User {
     private String phoneNumber;
     private String unique_id;
     private int validated;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    private Role role;
+    private int roleID;
     
     protected User() {}
 
-    public User(String firstName, String lastName, Department department, String password, String username,
-    		String email, Date reg_date, String phone_num, Role role) {
+    public User(String firstName, String lastName, int department, String escId, String password, String username,
+    		String email, Date reg_date, String phone_num, String un_id, int role) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.department = department;
+        this.departmentID = department;
+        this.escID = escId;
         this.password = password;
         this.username = username;
         this.email = email;
         this.registrationDate = reg_date;
         this.phoneNumber = phone_num;
-        this.role = role;
+        this.unique_id = un_id;
+        this.roleID = role;
     }
     
     @Access(AccessType.PROPERTY)
@@ -66,11 +63,11 @@ public class User {
     }
     
     @Access(AccessType.PROPERTY)
-    public Department getDepartment(){
-    	return this.department;
+    public int getDepartment(){
+    	return this.departmentID;
     }
-    public void setDepartment(Department dept){
-    	this.department = dept;
+    public void setDepartment(int dept){
+    	this.departmentID = dept;
     }
     
     @Access(AccessType.PROPERTY)
@@ -114,11 +111,11 @@ public class User {
     }
     
     @Access(AccessType.PROPERTY)
-    public Role getRole(){
-    	return this.role;
+    public int getRole(){
+    	return this.roleID;
     }
-    public void setRole(Role role){
-    	this.role = role;
+    public void setRole(int role){
+    	this.roleID = role;
     }
 
     @Override
@@ -127,5 +124,5 @@ public class User {
                 "User[firstName='%s', lastName='%s']",
                 firstName, lastName);
     }
-
+    
 }
