@@ -5,13 +5,14 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
+import java.util.Arrays;
 import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 import com.project.nwt.IRepository.IUserRepository;
@@ -21,19 +22,18 @@ import com.project.nwt.model.User;
 
 
 @SpringBootApplication
-@EnableAutoConfiguration
 public class EscUsersApplication {
 	
-	private static final Logger log = LoggerFactory.getLogger(EscUsersApplication.class);
+	//private static final Logger log = LoggerFactory.getLogger(EscUsersApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(EscUsersApplication.class, args);
 	}
 	
 	@Bean
-	public CommandLineRunner demo(IUserRepository repository) {
+	public CommandLineRunner demo(ApplicationContext ctx) {
 		return (args) -> {
-			// testing method save()
+			/*// testing method save()
 			//repository.save(new User("Neko", "Nekic2",1, "sifra", "nnekic","ddgrgdrg",//new Department("1", "AiE")
 		    //		"nnekic@etf.unsa.ba", new Date(), "123456", "fhhdfh",1));//new Role("1", "Administrator")
 
@@ -50,7 +50,17 @@ public class EscUsersApplication {
 			log.info("Korisnik sa id-em:");
 			log.info("--------------------------------");
 			log.info(user.toString());
-			log.info("");
+			log.info("");*/
+			
+			
+			
+			System.out.println("Let's inspect the beans provided by Spring Boot:");
+
+            String[] beanNames = ctx.getBeanDefinitionNames();
+            Arrays.sort(beanNames);
+            for (String beanName : beanNames) {
+                System.out.println(beanName);
+            }
 
 		};
 	}

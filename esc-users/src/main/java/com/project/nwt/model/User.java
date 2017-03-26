@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Access;
 import java.util.Date;
 
@@ -16,23 +17,27 @@ public class User {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
+	@Column(name="first_name")
 	private String firstName;
+	@Column(name="last_name")
     private String lastName;
     private int departmentID;
     private String escID;
     private String password;
     private String username;
     private String email;
+    @Column(name="registration_date")
     private Date registrationDate;
     private String phoneNumber;
     private String unique_id;
     private int validated;
     private int roleID;
+    private int active;
     
     protected User() {}
 
     public User(String firstName, String lastName, int department, String escId, String password, String username,
-    		String email, Date reg_date, String phone_num, String un_id, int role) {
+    		String email, Date reg_date, String phone_num, String un_id, int role, int active) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.departmentID = department;
@@ -44,6 +49,7 @@ public class User {
         this.phoneNumber = phone_num;
         this.unique_id = un_id;
         this.roleID = role;
+        this.active = active;
     }
     
     @Access(AccessType.PROPERTY)
@@ -116,6 +122,38 @@ public class User {
     }
     public void setRole(int role){
     	this.roleID = role;
+    }
+    
+    @Access(AccessType.PROPERTY)
+    public int getActive(){
+    	return this.active;
+    }
+    public void setActive(int active){
+    	this.active = active;
+    }
+    
+    @Access(AccessType.PROPERTY)
+    public String getEscID(){
+    	return this.escID;
+    }
+    public void setescID(String escID){
+    	this.escID = escID;
+    }
+    
+    @Access(AccessType.PROPERTY)
+    public String getUniqueID(){
+    	return this.unique_id;
+    }
+    public void setUniqueID(String uniqueID){
+    	this.unique_id = uniqueID;
+    }
+    
+    @Access(AccessType.PROPERTY)
+    public int getValidated(){
+    	return this.validated;
+    }
+    public void setValidated(int validated){
+    	this.validated = validated;
     }
 
     @Override
