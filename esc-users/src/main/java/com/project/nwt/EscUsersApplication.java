@@ -4,16 +4,20 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 import java.util.Arrays;
 import java.util.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.project.nwt.IRepository.IUserRepository;
 import com.project.nwt.model.Department;
@@ -63,5 +67,19 @@ public class EscUsersApplication {
             }
 
 		};
+	}
+	
+	
+	@RefreshScope
+	@RestController
+	class MessageRestController {
+
+	    @Value("${message:Hello default}")
+	    private String message;
+
+	    @RequestMapping("/message")
+	    String getMessage() {
+	        return this.message;
+	    }
 	}
 }
