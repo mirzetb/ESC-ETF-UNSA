@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 import java.util.Arrays;
@@ -24,7 +25,7 @@ import com.project.nwt.model.Department;
 import com.project.nwt.model.Role;
 import com.project.nwt.model.User;
 
-
+@EnableDiscoveryClient
 @SpringBootApplication
 public class EscUsersApplication {
 	
