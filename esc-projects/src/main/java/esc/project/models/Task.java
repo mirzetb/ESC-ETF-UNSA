@@ -26,6 +26,13 @@ public class Task {
 	{
 		
 	}
+	
+	public Task(String desc, Timestamp dd, TeamMember tm)
+	{
+		this.description = desc;
+		this.dueDate = dd;
+		this.teamMemeber = tm;
+	}
 
 	public int getId() {
 		return id;

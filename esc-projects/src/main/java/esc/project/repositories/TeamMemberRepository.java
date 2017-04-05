@@ -18,6 +18,9 @@ int getNoOfTmsOnProj(@Param ("projID") Integer projID);
 
 @Query ("Select tm from TeamMember tm where tm.project.id = :projID")
 List<TeamMember> getTMsOnProj(@Param("projID") Integer projID);
+
+@Query ("Select tm from TeamMember tm where tm.project.id = :projID and tm.user.userID = :userID ")
+public TeamMember findTMByProjID(@Param("projID") Integer projID, @Param("userID") Integer userID);
 	
 	
 	

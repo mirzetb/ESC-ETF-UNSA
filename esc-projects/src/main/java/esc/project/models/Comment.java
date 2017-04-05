@@ -25,6 +25,14 @@ public class Comment {
 	@ManyToOne
 	private UsersMeta user;
 	
+	public Comment(String text, Timestamp d, Project p, UsersMeta user)
+	{
+		this.text = text;
+		this.date = d;
+		this.project = p;
+		this.user = user;
+	}
+	
 	public int getId() {
 		return id;
 	}

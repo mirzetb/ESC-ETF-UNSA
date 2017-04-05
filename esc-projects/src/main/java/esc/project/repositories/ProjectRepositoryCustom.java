@@ -2,6 +2,7 @@ package esc.project.repositories;
 
 import java.util.List;
 
+import esc.project.models.Task;
 import esc.project.models.TeamMember;
 
 public interface ProjectRepositoryCustom {
@@ -15,6 +16,8 @@ public interface ProjectRepositoryCustom {
 	public String addTeamMemberToProject(int projID, int userID);
 	
 	public List<String> getTMsOnProject(int projID);
+	
+	 
 	
 	
 }
