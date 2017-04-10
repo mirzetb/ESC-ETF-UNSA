@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import esc.project.models.UsersMeta;
 import esc.project.services.ProjectRepositoryImpl;
 
 @RestController
@@ -44,6 +45,12 @@ public class ProjectController {
 	public List<String> getMembersOfProjectByName(@RequestParam("projID") Integer projID)
 	{
 		return projectRepo.getTMsOnProject(projID);
+	}
+	
+	@RequestMapping(value="/getOneUser")
+	public UsersMeta test(@RequestParam("userID") Integer userID)
+	{
+		return projectRepo.testna(userID);
 	}
 	
 	

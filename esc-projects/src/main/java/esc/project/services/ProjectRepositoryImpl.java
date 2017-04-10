@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 import esc.project.models.Project;
 import esc.project.models.Status;
@@ -30,7 +33,17 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom{
 	
 	@Autowired
 	TeamMemberRepository teamMemRepo;
+	
+	
 
+	
+	@Bean
+	@LoadBalanced
+	RestTemplate restTemplate()
+	{
+		return new RestTemplate();
+	}
+	
 	@Override
 	public String assignStatusToProject(int statID, int projID) {
 		
@@ -105,6 +118,16 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom{
 			teamMemberNames.add(tm.getUser().getFirstName() + " " + tm.getUser().getLastName());
 		}
 		return teamMemberNames;
+	}
+	
+	public UsersMeta testna(int userId)
+	{
+		RestTemplate rm = restTemplate();
+		 UsersMeta um = rm.getForObject("http://encore:8070/getById?id={id}", UsersMeta.class, userId);
+
+		 
+		 return um;
+		
 	}
 
 	

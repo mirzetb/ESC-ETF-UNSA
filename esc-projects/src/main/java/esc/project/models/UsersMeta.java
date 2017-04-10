@@ -18,6 +18,13 @@ public class UsersMeta {
 	private int userID;
 	
 	
+	public UsersMeta(int id, String fn, String ln)
+	{
+		this.firstName = fn;
+		this.lastName = ln;
+		this.id = id;
+	}
+	
 	public UsersMeta(){
 		
 	}

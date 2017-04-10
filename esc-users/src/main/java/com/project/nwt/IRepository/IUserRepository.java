@@ -6,12 +6,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.stereotype.Repository;
 
 import com.project.nwt.model.User;
 import java.lang.String;
 
 //@Repository
+@RepositoryRestResource(collectionResourceRel = "users", path = "users")
 public interface IUserRepository extends JpaRepository<User, Long> {
 	
 	List<User> findByFirstName(String firstname);
