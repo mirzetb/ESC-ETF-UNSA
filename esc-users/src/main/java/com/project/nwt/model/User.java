@@ -21,7 +21,7 @@ public class User {
 	private String firstName;
 	@Column(name="last_name")
     private String lastName;
-    private int departmentID;
+    private Department department;
     private String escID;
     private String password;
     private String username;
@@ -31,16 +31,17 @@ public class User {
     private String phoneNumber;
     private String unique_id;
     private int validated;
-    private int roleID;
+    
+    private Role role;
     private int active;
     
     protected User() {}
 
-    public User(String firstName, String lastName, int department, String escId, String password, String username,
-    		String email, Date reg_date, String phone_num, String un_id, int role, int active) {
+    public User(String firstName, String lastName, Department department, String escId, String password, String username,
+    		String email, Date reg_date, String phone_num, String un_id, Role role, int active) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.departmentID = department;
+        this.department = department;
         this.escID = escId;
         this.password = password;
         this.username = username;
@@ -48,7 +49,7 @@ public class User {
         this.registrationDate = reg_date;
         this.phoneNumber = phone_num;
         this.unique_id = un_id;
-        this.roleID = role;
+        this.role = role;
         this.active = active;
     }
     
@@ -69,11 +70,12 @@ public class User {
     }
     
     @Access(AccessType.PROPERTY)
-    public int getDepartment(){
-    	return this.departmentID;
+    @ManyToOne(cascade=CascadeType.ALL)
+    public Department getDepartment(){
+    	return this.department;
     }
-    public void setDepartment(int dept){
-    	this.departmentID = dept;
+    public void setDepartment(Department dept){
+    	this.department = dept;
     }
     
     @Access(AccessType.PROPERTY)
@@ -117,11 +119,12 @@ public class User {
     }
     
     @Access(AccessType.PROPERTY)
-    public int getRole(){
-    	return this.roleID;
+    @ManyToOne(cascade=CascadeType.ALL)
+    public Role getRole(){
+    	return this.role;
     }
-    public void setRole(int role){
-    	this.roleID = role;
+    public void setRole(Role role){
+    	this.role = role;
     }
     
     @Access(AccessType.PROPERTY)
