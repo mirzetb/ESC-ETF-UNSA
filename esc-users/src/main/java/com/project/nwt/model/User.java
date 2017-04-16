@@ -16,7 +16,7 @@ import java.util.Date;
 public class User {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private Long id;
+    private int id;
 	@Column(name="first_name")
 	private String firstName;
 	@Column(name="last_name")
@@ -31,6 +31,7 @@ public class User {
     private String phoneNumber;
     private String unique_id;
     private int validated;
+        
     
     private Role role;
     private int active;
@@ -38,7 +39,7 @@ public class User {
     protected User() {}
 
     public User(String firstName, String lastName, Department department, String escId, String password, String username,
-    		String email, Date reg_date, String phone_num, String un_id, Role role, int active) {
+    		String email, Date reg_date, String phone_num, String un_id, Role role, int active, int validated) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.department = department;
@@ -51,6 +52,8 @@ public class User {
         this.unique_id = un_id;
         this.role = role;
         this.active = active;
+        this.validated = validated;
+        
     }
     
     @Access(AccessType.PROPERTY)
@@ -159,7 +162,29 @@ public class User {
     	this.validated = validated;
     }
 
-    @Override
+    public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getUnique_id() {
+		return unique_id;
+	}
+
+	public void setUnique_id(String unique_id) {
+		this.unique_id = unique_id;
+	}
+
+	
+
+	public void setEscID(String escID) {
+		this.escID = escID;
+	}
+
+	@Override
     public String toString() {
         return String.format(
                 "User[firstName='%s', lastName='%s']",

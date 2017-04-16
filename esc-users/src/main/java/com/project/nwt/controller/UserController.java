@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.client.RestTemplate;
 import org.springframework.boot.*;
 import org.springframework.boot.autoconfigure.*;
 import org.springframework.http.HttpStatus;
@@ -67,5 +67,12 @@ public class UserController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public List<User> search(@RequestParam(value = "firstname", required = false) String firstname, @RequestParam(value = "lastname", required = false) String lastname){
 		return _userRepository.search(firstname, lastname);
+	}
+	
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public void AddUser(@RequestParam("first_name") String firstname, @RequestParam("last_name") String lastname, @RequestParam("escid") String escid, @RequestParam("password") String password, @RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("phone_number") String phone_number, @RequestParam("unique_id") String unique_id)
+	{
+		_userRepository.addNewUser(firstname, lastname, escid, password, username, email, phone_number, unique_id, 0, 0);
+		
 	}
 }

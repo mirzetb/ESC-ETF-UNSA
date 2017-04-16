@@ -1,12 +1,16 @@
 package com.project.nwt.repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.project.nwt.IRepository.IUserRepositoryCustom;
 import com.mysql.jdbc.log.Log;
@@ -18,6 +22,7 @@ public class UserRepository implements IUserRepositoryCustom {
 	
 	@Autowired
     IUserRepository _iUserRepository;
+	
 	
 	public UserRepository(IUserRepository iUserRepository)
 	{
@@ -61,6 +66,39 @@ public class UserRepository implements IUserRepositoryCustom {
 		}
 		return result;
 	}
+
+	@Override
+	public void addNewUser(String fn, String ln, String escid, String pass, String username, String email,
+		 String phone_num, String unique_id, int validated, int active) {
+		
+				
+		User u = new User(fn, ln, null, escid, pass, username, email, new Date(System.currentTimeMillis()), phone_num, unique_id, null, active, validated);
+		
+		_iUserRepository.save(u);
+		
+		RestTemplate rt = new RestTemplate();
+		
+		rt.postForObject(url(appName) + "/syncUsers", u, User.class);
+		
+		
+	}
+	
+	private String appName = "ESC-PROJECTS";
+	
+	@Autowired 
+	private DiscoveryClient discoveryClient;
+	
+	private String url(String serviceID)
+	{
+		List<ServiceInstance> lista = discoveryClient.getInstances(serviceID);
+		if(lista != null && lista.size() > 0)
+		{
+			return lista.get(0).getUri().toString();
+		}
+		return null;
+	}
+	
+	
 	
 
 }
