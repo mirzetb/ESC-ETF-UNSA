@@ -4,14 +4,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,20 +27,29 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 
 import com.project.nwt.IRepository.IUserRepository;
 import com.project.nwt.model.Department;
 import com.project.nwt.model.Role;
 import com.project.nwt.model.User;
 
+//@EnableOAuth2Sso
+//@EnableZuulProxy
 @EnableDiscoveryClient
 @SpringBootApplication
+//@EnableResourceServer
 public class EscUsersApplication {
 	
 	//private static final Logger log = LoggerFactory.getLogger(EscUsersApplication.class);
 
 	public static void main(String[] args) {
 		SpringApplication.run(EscUsersApplication.class, args);
+	}
+	
+	@RequestMapping("/")
+	public String securedCall(){
+		return "success (id: " + UUID.randomUUID().toString().toUpperCase() + ")";
 	}
 	
 	
@@ -102,4 +114,5 @@ public class EscUsersApplication {
 	        return this.message;
 	    }
 	}
+	
 }
