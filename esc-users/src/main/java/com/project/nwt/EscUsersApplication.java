@@ -24,6 +24,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.oauth2.config.annotation.web.configuration.EnableOAuth2Client;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,7 @@ import com.project.nwt.model.User;
 //@EnableZuulProxy
 @EnableDiscoveryClient
 @SpringBootApplication
-//@EnableResourceServer
+//@EnableOAuth2Client
 public class EscUsersApplication {
 	
 	//private static final Logger log = LoggerFactory.getLogger(EscUsersApplication.class);
@@ -47,10 +48,10 @@ public class EscUsersApplication {
 		SpringApplication.run(EscUsersApplication.class, args);
 	}
 	
-	@RequestMapping("/")
+	/*@RequestMapping("/")
 	public String securedCall(){
 		return "success (id: " + UUID.randomUUID().toString().toUpperCase() + ")";
-	}
+	}*/
 	
 	
 	@RestController

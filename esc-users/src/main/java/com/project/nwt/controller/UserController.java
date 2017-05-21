@@ -31,10 +31,10 @@ public class UserController {
 			_userRepository = userRepository;
 	}
 	
-	@RequestMapping("/")
+	/*@RequestMapping("/")
     public String index() {
         return "Greetings from Spring Boot!";
-    }
+    }*/
 	
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	@ResponseBody
