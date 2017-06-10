@@ -12,6 +12,7 @@ import esc.project.models.Project;
 public interface ProjectRepository extends PagingAndSortingRepository<Project, Integer>, ProjectRepositoryCustom {
 	
 	public Project findByTitle(@Param("title") String title);
+	public Project findById(@Param("id") int id);
 	
 	
 }

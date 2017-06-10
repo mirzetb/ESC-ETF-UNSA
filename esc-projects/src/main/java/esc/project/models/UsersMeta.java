@@ -16,13 +16,31 @@ public class UsersMeta {
 	private String firstName;
 	private String lastName;
 	private int userID;
+	private String username;
+	private String role;
 	
-	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public UsersMeta(int id, String fn, String ln)
 	{
 		this.firstName = fn;
 		this.lastName = ln;
 		this.id = id;
+	}
+	
+	public UsersMeta(String fn, String ln, int uID, String user, String role)
+	{
+		this.firstName = fn;
+		this.lastName = ln;
+		this.userID = uID;
+		this.username = user;
+		this.role = role;
 	}
 	
 	public UsersMeta(){
@@ -68,5 +86,15 @@ public class UsersMeta {
 	public void setUserID(int userID) {
 		this.userID = userID;
 	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	
 
 }

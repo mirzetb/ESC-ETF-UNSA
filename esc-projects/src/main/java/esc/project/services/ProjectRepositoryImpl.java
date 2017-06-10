@@ -3,6 +3,7 @@ package esc.project.services;
 
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,13 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom{
 		return new RestTemplate();
 	}
 	
+	
+	@Override
+	public List<Project> getAll() {
+		return (List<Project>) projectRepo.findAll();
+		
+	}
+	
 	@Override
 	public String assignStatusToProject(int statID, int projID) {
 		
@@ -60,14 +68,16 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom{
 	}
 
 	@Override
-	public void setDecisionDate(int projID) {
+	public Timestamp setDecisionDate(int projID) {
 		Project proj = projectRepo.findOne(projID);
 		if(proj != null)
 		{
 			Timestamp t = new Timestamp(System.currentTimeMillis());
 			proj.setDecisionDate(t);
 			projectRepo.save(proj);
+			return t;
 		}		
+		return null;
 	}
 
 	@Override
@@ -129,6 +139,35 @@ public class ProjectRepositoryImpl implements ProjectRepositoryCustom{
 		 return um;
 		
 	}
+	
+	public Project getProjById(int id)
+	{
+		return projectRepo.findById(id);
+	}
+
+
+	@Override
+	public void suggestProject(String username, String title, String purpose, String shortDescription, String teamSize) {
+		
+		Project p = new Project();
+		
+		
+		Status s = statusRepo.findByCode("3");
+		UsersMeta u = userRepo.findByusername(username);
+		p.setCreationDate(new Timestamp(System.currentTimeMillis()));
+		p.setDecisionComment(null);
+		p.setDecisionDate(null);
+		p.setPurpose(purpose);
+		p.setShortDescription(shortDescription);
+		p.setTitle(title);
+		p.setTeamSize(Integer.parseInt(teamSize));
+		p.setStatus(s);
+		p.setTeamLead(u);
+		
+		projectRepo.save(p);
+	}
+
+	
 
 	
 	

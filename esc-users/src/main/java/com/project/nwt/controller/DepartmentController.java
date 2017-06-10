@@ -1,7 +1,12 @@
 package com.project.nwt.controller;
 
+
+
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,13 +16,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.nwt.IRepository.IDepartmentRepository;
 import com.project.nwt.model.Department;
 import com.project.nwt.repository.DepartmentRepository;
 
 @RestController
 @RequestMapping("/departments")
 public class DepartmentController {
+	
+	@Autowired
 	private DepartmentRepository _departmentRepository;
+	
+	
 	
 	public DepartmentController(DepartmentRepository departmentRepository)
 	{
@@ -25,13 +35,13 @@ public class DepartmentController {
 			_departmentRepository = departmentRepository;
 	}
 	
-	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
+	@RequestMapping(value = "/getAllDepartments", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Department> getAll(){
 		return _departmentRepository.getAll();
 	}
 	
-	@RequestMapping(value = "/getById", method = RequestMethod.GET)
+	@RequestMapping(value = "/getDepartmentById", method = RequestMethod.GET)
 	@ResponseBody
 	public Department getById(@RequestParam(value = "id", required = true) String id){
 		return _departmentRepository.getById(Long.parseLong(id));
@@ -56,4 +66,6 @@ public class DepartmentController {
 		}
 		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
+	
+	
 }

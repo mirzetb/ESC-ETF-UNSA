@@ -16,10 +16,16 @@ import java.lang.String;
 @RepositoryRestResource(collectionResourceRel = "users", path = "users")
 public interface IUserRepository extends JpaRepository<User, Long> {
 	
+	
+	@Query("SELECT u FROM User u WHERE LOWER (u.username) = LOWER(:user) AND LOWER(u.password) = LOWER(:pass) ")
+	public User login(@Param("user") String user, @Param("pass") String pass);
+	User findByUsername(String username);
 	List<User> findByFirstName(String firstname);
 	List<User> findByLastName(String lastname);
 	
+	@Query("SELECT u FROM User u WHERE u.unique_id = :uid")
+	public User findByUniqueID(@Param("uid") String uid);
 	
-	//@Query("SELECT u.first_name, u.last_name FROM User u where u.first_name = :firstname and u.last_name = :lastname") 
-	//public List<User> search(@Param("firstname") String firstname, @Param("lastname") String lastname);
+	
+	
 }

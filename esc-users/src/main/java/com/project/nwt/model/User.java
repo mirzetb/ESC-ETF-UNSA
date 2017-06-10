@@ -6,6 +6,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import org.springframework.context.annotation.Configuration;
+
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +16,7 @@ import javax.persistence.Access;
 import java.util.Date;
 
 @Entity
+@Configuration
 public class User {
 	@Id
     @GeneratedValue(strategy=GenerationType.AUTO)

@@ -39,4 +39,8 @@ public class DepartmentRepository {
 	public List<Department> findByName(String name){
 		return _iDepartmentRepository.findByName(name);
 	}
+	public Department findByCode(String code)
+	{
+		return _iDepartmentRepository.findByCode(code);
+	}
 }

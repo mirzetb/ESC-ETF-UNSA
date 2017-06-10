@@ -1,0 +1,115 @@
+html, body {
+	height: 100%;
+	width: 100%;
+}
+
+#bannerPicWrapperID {
+	width: 100%;
+	height: 80px;
+	overflow: hidden;	
+}
+
+#bannerPicID {
+	width: 100%;	    
+}
+
+#userInfoID {
+	margin: 15px;	
+}
+
+#userInfoID > p {	
+	
+	box-shadow: 5px 5px #d6f5d6;	
+}
+
+#userInfoID > p > label {
+	color: green;
+	font-weight: bold;
+	font-size: Medium;	
+}
+
+#verifyAccountID {
+	margin-top: 2px;
+	margin-bottom: 2px;	
+}
+
+
+#pwChangeWrapperID{
+	width: 100%;
+}
+#pw_change {
+	margin-top : 50px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+}
+#pw_change label{
+	font-size: smaller;
+	color: green;
+	text-align: center;
+}
+
+#pw_change input{
+	float: right;
+}
+
+#PWFormToggle{
+	margin: 10px;
+	
+}
+
+#errorMessage{
+	
+	text-align: center;
+	color: orange;
+	font-size: x-small;
+	font-weight: bolder;
+}
+
+div.invalidPass {
+	text-align: center;
+	color: orange;
+	font-size: x-small;
+	font-weight: bolder;
+}
+
+
+#pw_change input:focus {
+	outline: none !important;
+	border: 1px solid green;	
+}
+
+#logoutID{
+	float: right;
+	margin-top: 15px;
+	
+}
+
+#projectID{
+	float: right;
+	margin-top: 15px;
+	margin-right: 5px;
+}
+
+#adminPanelanchorID{
+	margin-top: 15px;
+	float: right;
+	margin-right: 5px;
+}
+#bodyContentID{
+	width: 100%;
+}
+
+#restText{
+	font-family: 'Tangerine', cursive;
+	font-size: 40px;
+	font-weight: bold;
+	
+}
+
+
+#headline{
+	font-family: 'Orbitron', sans-serif;
+	color: green;
+	text-shadow: 2px 2px #d6f5d6;
+}

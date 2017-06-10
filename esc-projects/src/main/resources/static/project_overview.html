@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>O projektu</title>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css?family=Barrio|Orbitron"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Tangerine"
+	rel="stylesheet">
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous">
+
+<link href="/css/project_overview.css" rel="stylesheet">
+</head>
+
+
+<body>
+
+
+	<div id=bannerPicWrapperID>
+		<img id="bannerPicID" src="/images/print-board-banner.jpg"
+			alt="banner">
+	</div>
+
+	<div id="projectWrapperID" class="col-lg-12">
+		<h3>
+			<span id="headline">ESC</span> project
+		</h3>
+	</div>
+
+	<div id="projectID" class="col-md-12">
+
+		<div id="teamWrapperID" class="col-md-3">
+			<h5>Razvojni tim</h5>
+			<div id="capacityCounterID" data-bind="style: {color: teamMembers().length < teamSize() ? 'black' : 'red'}" >
+				<span>Kapacitet <span data-bind="text: teamMembers().length"></span> / <span data-bind="text: teamSize"></span></span>
+			</div>			
+			<div id="teamMemberListID">
+				<ul data-bind="foreach: teamMembers" class="list-group list-group-flush">
+					<li data-bind="text: firstName + ' ' + lastName" class="list-group-item"></li>
+				</ul>
+			</div>
+			
+			<div data-bind="if: teamMembers().length < teamSize()">
+				<button id="assignToProjectBtnId" data-bind="click: assignMemberToProject, visible: !(checkIfAssigned())" class="btn btn-xs btn-success">Prijavi se za učešće na projektu</button>
+			</div>
+			
+			
+		</div>
+
+		<div id="projectWrapperID" class="col-md-6">
+
+			<div id="projectInfoID">
+				<div id="titleWrapperID">
+					<span id="infoID" class="glyphicon glyphicon-info-sign" data-toggle="popover" data-content="" data-bind="event: {mouseover: populatePopover, mouseout: hidePopover} "></span>
+					<h1 id="titleID" data-bind="text: title"></h1>					
+				</div>
+				
+				<p id="shortDescriptionID" class="lead" data-bind="text: shortDescription"></p>
+				<div id="purposeID" class="row">
+					<label class="label label-success" data-bind="text: purpose"></label>
+					<!-- ko if: status().code == 1 -->
+					<label class="label label-success" data-bind="text: status().text"></label>
+					<!-- /ko -->
+					<!-- ko if: status().code == 3 -->
+					<label class="label label-warning" data-bind="text: status().text"></label>
+					<!-- /ko -->
+					<!-- ko if: status().code == 2 -->
+					<label class="label label-danger" data-bind="text: status().text"></label>
+					<!-- /ko -->
+					
+				</div>
+							
+				<span id="openCommentSectionID" class="glyphicon glyphicon-menu-down" data-bind="event: {mouseover: openSection}"></span>
+				<br>
+				
+				<div id="commentSectionID" hidden>
+					<div class="row"><span id="countText"> Broj komentara na projekat: </span> <span id="countNum" data-bind="text: commentsOnProject().length"></span></div>
+					<div id="commentsID" data-bind="foreach: commentsOnProject">
+						
+						<div class="existingComments">
+							<div class="row"><span class="glyphicon glyphicon-time" id="dateTimeCommentID"><span data-bind="text: $root.formatCommentDate(date)"> </span> </span><span class="glyphicon glyphicon-user" id="authorCommentID"><span data-bind="text: user.firstName + ' ' + user.lastName"></span> </span></div>
+							<br>
+							<p class="text-center"  data-bind="text: text"></p>
+							
+						</div>						
+					
+					</div>
+					<div id="newCommentID">
+						<textarea id="commentContent" placeholder = "Vaš komentar..." data-bind="value: commentContent"></textarea>
+						<div class="row">
+							<button id="commentSubmit" class="btn btn-xs btn-success" data-bind="click: postComment">Komentiraj</button>
+						</div>
+						
+						
+					</div>
+				
+				</div>
+			</div>
+			
+			
+			<div id="requiredResourceWrapperID">
+				
+				<div class="row">
+					<!-- ko if: role() == 'SuperUser' -->
+						<button id="addMoreResourcesID" class="btn btn-success btn-xs" data-toggle="modal" data-target="#addRR"><span class="glyphicon glyphicon-plus" ></span></button>
+					<!-- /ko -->
+					<span id="headTitle">Potrebna oprema</span>
+					
+				</div>
+				
+				
+				<div id="reqResTableWrapperID">
+				
+					<table id="reqResTableID">
+						<thead>
+							<tr>
+								<th>Naziv</th>
+								<th>Količina</th>
+								<th>Cijena (KM/kom)</th>
+								<th>Bilješka</th>
+								<th>Ukupno (KM)</th>
+							</tr>
+						</thead>
+						<tbody>
+						
+							<!-- ko foreach: requiredResources -->
+							<tr>
+								<td data-bind="text: title"></td>
+								<td data-bind="text: quantity"></td>
+								<td data-bind="text: unitPrice"></td>
+								<td data-bind="text: note"></td>
+								<td data-bind="text: quantity*unitPrice"></td>
+							</tr>
+							<!-- /ko -->
+							<tr id="lastRow">
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td data-bind="text: grandTotal"></td>
+							</tr>
+						</tbody>
+					
+					</table>
+					
+					
+					
+				</div>
+				
+			</div>
+
+		</div>
+
+		<div data-bind="visible: role() == 'SuperUser'" id="adminActivitiesProjectID" class="col-md-3">
+		
+			<h5>Panel članova vijeća</h5>
+			
+			
+			<div id="decidedAboutProjectID">
+				<div id="statusPanelID">
+					<select id="statusChooserID" data-bind="options: statuses, optionsText: 'text', optionsValue: 'code', optionsCaption: 'Promijeni status'" class="form-control">
+					</select>				
+					<btn id="assignStatusID" class="btn btn-xs btn-success" data-bind="click: changeProjectStatus">Potvrdi</btn>
+				</div>
+			
+				<div id="decisionPanel">
+					<textarea id="decisionCommentID" class="form-control" placeholder="Unesite komentar odluke..."></textarea>
+					<btn id="setDecisionCommentID" class="btn btn-xs btn-success" data-bind="click: setDecisionComment">Potvrdi</btn>
+				</div>
+			</div>
+			<br>
+			
+			
+			
+			
+		
+		</div>
+
+
+	</div>
+	
+	<div id="addRR" class="modal fade" role="dialog">
+		
+		<div class="modal-dialog">
+			<div class="modal-content">
+				
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Dodaj novu opremu</h4>
+				</div>
+				
+				<div class="modal-body">
+					
+					<form id="addNewRRID">
+						<input type="text" class="form-control" placeholder="Naziv" data-bind="value: titleRR"/>
+						<input type="number" min="1"  class="form-control" placeholder="Količina" data-bind="value: quantity"/>	
+						<div id="priceInput" class="input-group">
+							<span class="input-group-addon">KM/kom</span>
+							<input type="number" min="1" class="form-control" placeholder="Cijena (KM/kom)" data-bind="value: unitPrice"/>
+						</div>					
+						
+						<input type="text" class="form-control" placeholder="Bilješka" data-bind="value: noteRR"/>
+						
+						<button id="addNewRRBtnID" type="button" class=" btn btn-success btn-xs" data-bind="click: addNewRRFunction">Dodaj</button>
+						
+						
+						
+					</form>	
+					
+				</div>
+				
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Zatvori</button>
+				</div>
+				
+			</div>
+		</div>
+	
+	</div>
+
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"
+		type="text/javascript"></script>
+	<script src="/js/project_overview.js" type="text/javascript"></script>
+</body>
+</html>

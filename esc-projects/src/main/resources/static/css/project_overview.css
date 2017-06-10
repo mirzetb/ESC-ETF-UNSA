@@ -1,0 +1,326 @@
+#bannerPicWrapperID {
+	width: 100%;
+	height: 80px;
+	overflow: hidden;	
+}
+
+#bannerPicID {
+	width: 100%;	    
+}
+
+h3{
+	font-family: 'Tangerine', cursive;
+	font-size: 40px;
+	font-weight: bold;
+	
+}
+
+
+#headline{
+	font-family: 'Orbitron', sans-serif;
+	color: green;
+	text-shadow: 2px 2px #d6f5d6;
+}
+
+#projectID{
+	width: 100%;
+}
+
+#projectInfoID {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	text-align: center;
+	border: 2px solid green;
+	
+	box-shadow: 2px 2px 2px;
+}
+
+#titleID{
+	font-weight: bolder;
+	font-size: x-large;
+	color: green;
+	text-decoration: underline;
+	text-align: center;
+	margin-left: auto;
+	padding-left: 30px;
+	margin-left: auto;
+}
+
+#infoID{
+	float: right;
+	padding-right: 20px;
+	font-size: 18px;
+	font-weight: lighter;
+	color: green;
+}
+
+#titleWrapperID{
+	width: 100%;
+}
+
+
+#shortDescriptionID{
+	border: none;
+	text-align: center;
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#purposeID{
+	text-align: center;
+	font-weight: lighter;
+}
+
+#openCommentSectionID{
+	float: right;
+	padding-right: 20px;
+	margin-top: -5px;
+	font-size: 18px;
+	font-weight: lighter;
+	color: green;
+}
+
+#commentContent{
+	width: 95%;
+	max-width:95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#commentSubmit{
+	float: right;
+	width: 20%;
+	margin-right: 30px;
+	margin-bottom: 10px;
+	
+	
+}
+
+.existingComments{
+	width: 95%;
+	border: 1px solid green;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+}
+
+#commentSectionID{
+	max-height: 300px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+#dateTimeCommentID{
+	float: left;
+	width: 50%;
+	margin-left: -55px;
+	font-size: small;
+	color: green;
+}
+
+#dateTimeCommentID > span{
+	color: black;
+}
+
+#authorCommentID{
+	float: left;
+	width:50%;
+	margin-left: 55px;
+	padding-left: 120px;
+	font-size: small;
+	color: green;
+}
+
+#authorCommentID > span{
+	color: black;
+}
+
+#countText{
+	float:left;
+	margin-left: 30px;
+	margin-bottom: 5px;
+}
+
+#countNum{
+	float:left;
+}
+
+#teamWrapperID{
+	border: 2px solid green;
+	box-shadow: 2px 2px 2px;
+	text-align: center;
+}
+
+#teamWrapperID > h5{
+	color: green;
+}
+
+#assignToProjectBtnId{
+	margin: 2px;
+	
+}
+
+
+#capacityCounterID > span{
+	font-size: x-small;
+	color: inherit;
+	
+}
+
+#adminActivitiesProjectID{
+	border: 2px solid green;
+	box-shadow: 2px 2px 2px;
+	text-align: center;
+}
+
+
+
+#statusPanelID > select{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	width: 95%;
+}
+
+#assignStatusID, #setDecisionCommentID{
+	float: right;
+	width: 20%;
+	margin-right: 8px;
+	margin-bottom: 5px;
+}
+
+#decisionCommentID{
+	min-width: 95%;
+	max-width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#decidedAboutProjectID {
+	border:  1px solid green;
+	padding-bottom: 30px;
+	margin-bottom: 5px;	
+	padding-top: 5px;
+}
+
+#adminActivitiesProjectID > h5{
+	color: green;
+}
+
+#requiredResourceWrapperID{
+	border: 1px solid green;
+}
+
+#requiredResourceWrapperID{
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	text-align: center;
+	border: 2px solid green;	
+	box-shadow: 2px 2px 2px;
+	margin-top: 20px;
+	
+}
+
+#headTitle{
+	color: green;
+	
+	
+	width: 50%;
+	margin-right: 55px;
+}
+
+#reqResTableWrapperID{
+	margin-left: auto;
+	margin-right: auto;
+	width: 95%;
+}
+
+#reqResTableID{
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+	font-size: 12px;
+	border: 1px solid green;
+	border-collapse: collapse;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+#reqResTableID th{
+	text-align: center;
+	border: 1px solid green;
+	border-collapse: collapse;
+	font-size: 11px;
+	font-weight: 600;
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#reqResTableID td{
+	text-align: center;
+	border: 1px solid green;
+	border-collapse: collapse;
+	font-size: 11px;
+	
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+#addMoreResourcesID{
+	margin-left: 30px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+	float: left;
+	font-size: 10px;
+	font-weight: lighter;
+	
+}
+
+#addNewRRID {
+	margin-bottom: 20px;
+}
+
+#addNewRRID > input{
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+#priceInput{
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#priceInput span {
+	width: 20%;
+}
+
+#priceInput input: {
+	width: 60%;
+}
+
+#addNewRRBtnID{
+	float: right;
+	width: 20%;
+	margin-right: 60px;
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+#lastRow td{
+	border:none;
+	color: green;
+	font-weight: bolder;
+	font-size: 12px;
+}
+
+
+
